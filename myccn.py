@@ -82,12 +82,12 @@ def get_transform(train):
 # use our dataset and defined transformations
 
 
-dataset = RaccoonDataSet(root="/home/thorben/Documents/CustomCNN/raccoon_dataset",
-                         data_file="/home/thorben/Documents/CustomCNN/raccoon_dataset/data/raccoon_labels.csv",
+dataset = RaccoonDataSet(root="/content/pytorchCNN/raccoon_dataset",
+                         data_file="/content/pytorchCNN/raccoon_dataset/data/raccoon_labels.csv",
                          transforms=get_transform(train=True))
 
-dataset_test = RaccoonDataSet(root="/home/thorben/Documents/CustomCNN/raccoon_dataset",
-                              data_file="/home/thorben/Documents/CustomCNN/raccoon_dataset/data/raccoon_labels.csv",
+dataset_test = RaccoonDataSet(root="/content/pytorchCNN/raccoon_dataset",
+                              data_file="/content/pytorchCNN/raccoon_dataset/data/raccoon_labels.csv",
                               transforms=get_transform(train=False))
 
 # split the dataset in train and test set
@@ -145,6 +145,6 @@ for epoch in range(num_epochs):
 #evaluate in the test dataset
 evaluate(model, data_loader_test, device=device)
 
-os.mkdir("/home/thorben/Documents/CustomCNN/pytorch_detection/raccoon/")
-torch.save(model.state_dict(), "/home/thorben/Documents/CustomCNN/pytorch_detection/raccoon/model")
+os.mkdir("/content/pytorchCNN/pytorch_detection/raccoon/")
+torch.save(model.state_dict(), "/content/pytorchCNN/pytorch_detection/raccoon/model")
 # print(dataset.__getitem__(0))
