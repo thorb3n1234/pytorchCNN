@@ -83,12 +83,12 @@ def get_transform(train):
 # use our dataset and defined transformations
 
 
-dataset = RaccoonDataSet(root="/content/pytorchCNN/raccoon_dataset",
-                         data_file="/content/pytorchCNN/raccoon_dataset/data/raccoon_labels.csv",
+dataset = RaccoonDataSet(root="/content/pytorchCNN/connection_dataset",
+                         data_file="/content/pytorchCNN/connection_dataset/data/connection_labels.csv",
                          transforms=get_transform(train=True))
 
-dataset_test = RaccoonDataSet(root="/content/pytorchCNN/raccoon_dataset",
-                              data_file="/content/pytorchCNN/raccoon_dataset/data/raccoon_labels.csv",
+dataset_test = RaccoonDataSet(root="/content/pytorchCNN/connection_dataset",
+                              data_file="/content/pytorchCNN/raccoon_dataset/data/connection_labels.csv",
                               transforms=get_transform(train=False))
 
 # split the dataset in train and test set
