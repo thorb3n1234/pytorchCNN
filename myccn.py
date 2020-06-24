@@ -182,4 +182,4 @@ for element in range(len(prediction[0]["boxes"])):
         draw.rectangle([(boxes[0], boxes[1]), (boxes[2], boxes[3])],
                        outline="red", width=3)
         draw.text((boxes[0], boxes[1]), text=str(score))
-image.show()
+image.save("test.jpg")
