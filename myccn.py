@@ -4,9 +4,9 @@ import os
 
 import torch
 import torch.utils.data
-from PIL import Image
+from PIL import Image, ImageDraw
 import pandas as pd
-
+import numpy as np
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 import torchvision as tv
 from engine import train_one_epoch, evaluate
@@ -55,6 +55,7 @@ class RaccoonDataSet(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.imgs)
+
 
 def get_model(num_classes):
     # load an object detection model pre-trained on COCO
@@ -132,7 +133,7 @@ optimizer = torch.optim.SGD(params, lr=0.005,
 
 lrscheduler = torch.optim.lr_scheduler.StepLR(optimizer,
                                               step_size=3,
-                                               gamma=0.1)
+                                              gamma=0.1)
 
 # lets train for 10 epochs
 
@@ -140,11 +141,45 @@ num_epochs = 10
 for epoch in range(num_epochs):
     # train for one epoch , printing every 10 iterations
     train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq=10)
-# update learning rate
+    # update learning rate
     lrscheduler.step()
-#evaluate in the test dataset
+# evaluate in the test dataset
 evaluate(model, data_loader_test, device=device)
 
 os.mkdir("/content/pytorchCNN/pytorch_detection/raccoon/")
 torch.save(model.state_dict(), "/content/pytorchCNN/pytorch_detection/raccoon/model")
 # print(dataset.__getitem__(0))
+
+# create empty mode and load previously trained model
+loaded_model = get_model(num_classes=2)
+
+loaded_model.load_state_dict(torch.load("/content/pytorchCNN/pytorch_detection/raccoon/model"))
+
+idx = 0
+
+img, _ = dataset_test[idx]
+label_boxes = np.array((dataset_test[idx][1]["boxes"]))
+
+# put the model in evaluation mode
+loaded_model.eval()
+
+with torch.no_grad():
+    prediction = loaded_model([img])
+image = Image.fromarray(img.mul(255).permute(1, 2, 0).byte().numpy())
+draw = ImageDraw.Draw(image)
+
+# draw groundthuth
+
+for elem in range(len(label_boxes)):
+    draw.rectangle([(label_boxes[elem][0], label_boxes[elem][1]),
+                    (label_boxes[elem][2], label_boxes[elem][3])],
+                   outline="green", width=3)
+for element in range(len(prediction[0]["boxes"])):
+    boxes = prediction[0]["boxes"][element].cpu().numpy()
+    score = np.round(prediction[0]["scores"][element].cpu().numpy(),
+                     decimals=4)
+    if score > 0.5:
+        draw.rectangle([(boxes[0], boxes[1]), (boxes[2], boxes[3])],
+                       outline="red", width=3)
+        draw.text((boxes[0], boxes[1]), text=str(score))
+image.show()
