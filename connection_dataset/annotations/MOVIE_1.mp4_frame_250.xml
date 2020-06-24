@@ -1,0 +1,1 @@
+<annotations><filename>MOVIE_1.mp4_frame_250.jpg</filename><folder>images</folder><size><width>1080</width><height>1920</height><depth>3</depth></size><object><name>connection</name><pose>Unspecified</pose><truncated>0</truncated><difficult>0</difficult><bndbox><xmin>530.00028</xmin><ymin>898.00128</ymin><xmax>612.00036</xmax><ymax>908.00064</ymax></bndbox></object></annotations>

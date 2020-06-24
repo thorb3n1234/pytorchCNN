@@ -1,0 +1,1 @@
+<annotations><filename>VID_10.mp4_frame_232.jpg</filename><folder>images</folder><size><width>2160</width><height>3840</height><depth>3</depth></size><object><name>connection</name><pose>Unspecified</pose><truncated>0</truncated><difficult>0</difficult><bndbox><xmin>976.00032</xmin><ymin>2172.0</ymin><xmax>1231.00128</xmax><ymax>2224.99968</ymax></bndbox></object></annotations>

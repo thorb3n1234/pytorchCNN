@@ -1,0 +1,1 @@
+<annotations><filename>20200529_101749.jpg</filename><folder>images</folder><size><width>3024</width><height>4032</height><depth>3</depth></size><object><name>connection</name><pose>Unspecified</pose><truncated>0</truncated><difficult>0</difficult><bndbox><xmin>1362.99996</xmin><ymin>1444.99824</ymin><xmax>1640.999304</xmax><ymax>1507.99824</ymax></bndbox></object></annotations>
