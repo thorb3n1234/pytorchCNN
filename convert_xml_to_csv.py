@@ -79,14 +79,14 @@ def read_file(file_path, outfile_name):
     root = tree.getroot()
 
     csvline = [
-        root.find('filename').text,
-        root.find("size/width").text,
-        root.find('size/height').text,
-        root.find('object/name').text,
-        root.find('object/bndbox/xmin').text,
-        root.find('object/bndbox/ymin').text,
-        root.find('object/bndbox/xmax').text,
-        root.find('object/bndbox/ymax').text
+        int(root.find('filename').text),
+        int(root.find("size/width").text),
+        int(root.find('size/height').text),
+        int(root.find('object/name').text),
+        int(root.find('object/bndbox/xmin').text),
+        int(root.find('object/bndbox/ymin').text),
+        int(root.find('object/bndbox/xmax').text),
+        int(root.find('object/bndbox/ymax').text)
     ]
     file.write(','.join(csvline))
     file.write('\n')
