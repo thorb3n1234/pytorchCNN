@@ -110,6 +110,7 @@ data_loader_test = torch.utils.data.DataLoader(
 print("We have: {} examples, {} are training and {} testing".format(len(indices), len(dataset), len(dataset_test)))
 
 if torch.cuda.is_available():
+    print('WORKING ON GPU ! \n')
     device = torch.device('cuda')
 else:
     device = torch.device('cpu')
