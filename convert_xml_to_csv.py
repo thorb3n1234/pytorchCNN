@@ -75,19 +75,23 @@ def create_file(file_prefix, width, height, voc_labels):
 def read_file(file_path, outfile_name):
     file_prefix = file_path.split(".txt")[0]
     file = open(outfile_name, 'a+')
-    tree = ElementTree.parse("xml_annotations/" + str(file_path))
+    tree = ElementTree.parse("connection_dataset/annotations/" + str(file_path))
     root = tree.getroot()
 
+
+    print(int(float(root.find('object/bndbox/xmin').text)))
+
     csvline = [
-        int(root.find('filename').text),
-        int(root.find("size/width").text),
-        int(root.find('size/height').text),
-        int(root.find('object/name').text),
-        int(root.find('object/bndbox/xmin').text),
-        int(root.find('object/bndbox/ymin').text),
-        int(root.find('object/bndbox/xmax').text),
-        int(root.find('object/bndbox/ymax').text)
+        root.find('filename').text,
+        str(int(float(root.find("size/width").text))),
+        str(int(float(root.find('size/height').text))),
+        root.find('object/name').text,
+        str(int(float(root.find('object/bndbox/xmin').text))),
+        str(int(float(root.find('object/bndbox/ymin').text))),
+        str(int(float(root.find('object/bndbox/xmax').text))),
+        str(int(float(root.find('object/bndbox/ymax').text)))
     ]
+    print(csvline)
     file.write(','.join(csvline))
     file.write('\n')
 
