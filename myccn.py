@@ -97,18 +97,18 @@ torch.manual_seed
 indices = torch.randperm(len(dataset)).tolist()
 dataset = torch.utils.data.Subset(dataset, indices[:-40])
 
-batch_size = 64
+batch_size = 16
 # yolov5
 nw = min([os.cpu_count(), batch_size if batch_size > 1 else 0, 8])  # number of workers
 
 # yolov5
 # define training and validation data loaders
 data_loader = torch.utils.data.DataLoader(
-    dataset, batch_size=64, shuffle=False, num_workers=nw, pin_memory=True, collate_fn=utils.collate_fn
+    dataset, batch_size=16, shuffle=False, num_workers=nw, pin_memory=True, collate_fn=utils.collate_fn
 )
 
 data_loader_test = torch.utils.data.DataLoader(
-    dataset, batch_size=64, shuffle=False, num_workers=nw,
+    dataset, batch_size=16, shuffle=False, num_workers=nw,
     collate_fn=utils.collate_fn
 )
 print("We have: {} examples, {} are training and {} testing".format(len(indices), len(dataset), len(dataset_test)))
