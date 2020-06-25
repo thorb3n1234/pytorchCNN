@@ -97,11 +97,16 @@ torch.manual_seed
 indices = torch.randperm(len(dataset)).tolist()
 dataset = torch.utils.data.Subset(dataset, indices[:-40])
 
+batch_size = 64
+# yolov5
+nw = min([os.cpu_count(), batch_size if batch_size > 1 else 0, 8])  # number of workers
+
+# yolov5
 # define training and validation data loaders
 data_loader = torch.utils.data.DataLoader(
-    dataset, batch_size=64, shuffle=True, num_workers=4,
-    collate_fn=utils.collate_fn
+    dataset, batch_size=64, shuffle=False, num_workers=4, pin_memory=True, collate_fn=utils.collate_fn
 )
+
 data_loader_test = torch.utils.data.DataLoader(
     dataset, batch_size=64, shuffle=False, num_workers=4,
     collate_fn=utils.collate_fn
@@ -137,7 +142,7 @@ lrscheduler = torch.optim.lr_scheduler.StepLR(optimizer,
 
 # lets train for 10 epochs
 
-num_epochs = 10
+num_epochs = 5
 for epoch in range(num_epochs):
     # train for one epoch , printing every 10 iterations
     train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq=10)
