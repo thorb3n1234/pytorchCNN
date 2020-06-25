@@ -7,7 +7,6 @@ import torch.utils.data
 from PIL import Image, ImageDraw
 import pandas as pd
 import numpy as np
-from torchvision.models.detection.faster_rcnn import impport
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 import torchvision as tv
 from engine import train_one_epoch, evaluate
