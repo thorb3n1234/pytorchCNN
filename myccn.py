@@ -141,7 +141,7 @@ lrscheduler = torch.optim.lr_scheduler.StepLR(optimizer,
                                               step_size=3,
                                               gamma=0.1)
 
-# lets train for 10 epochs
+# lets train for 5 epochs
 
 num_epochs = 5
 for epoch in range(num_epochs):
@@ -162,7 +162,6 @@ loaded_model = get_model(num_classes=2)
 loaded_model.load_state_dict(torch.load("/content/pytorchCNN/pytorch_detection/raccoon/model"))
 
 idx = 0
-mymodel =
 img, _ = dataset_test[idx]
 label_boxes = np.array((dataset_test[idx][1]["boxes"]))
 
