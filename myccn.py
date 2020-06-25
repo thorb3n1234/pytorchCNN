@@ -108,7 +108,7 @@ data_loader = torch.utils.data.DataLoader(
 )
 
 data_loader_test = torch.utils.data.DataLoader(
-    dataset, batch_size=64, shuffle=False, num_workers=4,
+    dataset, batch_size=64, shuffle=False, num_workers=0,
     collate_fn=utils.collate_fn
 )
 print("We have: {} examples, {} are training and {} testing".format(len(indices), len(dataset), len(dataset_test)))
