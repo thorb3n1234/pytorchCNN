@@ -7,6 +7,7 @@ import torch.utils.data
 from PIL import Image, ImageDraw
 import pandas as pd
 import numpy as np
+from torchvision.models.detection.faster_rcnn import impport
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 import torchvision as tv
 from engine import train_one_epoch, evaluate
@@ -161,7 +162,7 @@ loaded_model = get_model(num_classes=2)
 loaded_model.load_state_dict(torch.load("/content/pytorchCNN/pytorch_detection/raccoon/model"))
 
 idx = 0
-
+mymodel =
 img, _ = dataset_test[idx]
 label_boxes = np.array((dataset_test[idx][1]["boxes"]))
 
